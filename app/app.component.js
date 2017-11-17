@@ -9,11 +9,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var AppComponent = /** @class */ (function () {
     function AppComponent() {
+        this.message = 'Hello!';
+        this.users = [
+            { id: 33, name: 'Ori', username: 'Volfo' },
+            { id: 14, name: 'Morty', username: 'Mort' },
+            { id: 55, name: 'Rick', username: 'Sanchez' }
+        ];
     }
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: "\n    <div class=\"jumbotron\">\n        <h1>Welcome to our app!</h1>\n    </div>\n    ", styles: ["\n        .jumbotron { box-shadow: 0 2px 0 rgba(0,0,0,0.2); }\n    "]
+            template: "\n<header>\n    <nav class=\"navbar navbar-inverse\">\n        <div class=\"navabr-header\">\n            <a href=\"/\" class=\"navbar-brand\">My Angular 2 app!</a>\n        </div>\n    </nav>\n</header>\n<main>\n    <div class=\"jumbotron\">\n        <h1>Welcome to our app!</h1>\n        <p>{{message}}</p>\n    </div>\n    <div *ngFor=\"let user of users\">\n        <p>The user is {{user.name}} {{user.username}}.</p>\n    </div>\n</main>\n\n<footer class=\"text-center\">\n    copyright &copy; 2017\n</footer>\n    ", styles: ["\n        .jumbotron { box-shadow: 0 2px 0 rgba(0,0,0,0.2); }\n    "]
         })
     ], AppComponent);
     return AppComponent;
