@@ -14,15 +14,18 @@ import {Component} from "@angular/core";
     <div class="row">
         <div class="col-sm-4">
             <div *ngIf="users">
-                <ul class="list-group users-list" *ngFor="let user of users">
-                    <li class="list-group-item">The user is {{user.name}} {{user.username}}.</li>
+                <ul class="list-group users-list">
+                    <li *ngFor="let user of users" (click)="selectedUser(user)" [class.active]="user === activeUser" class="list-group-item">The user is {{user.name}} {{user.username}}.</li>
                 </ul>
             </div>
         </div>
         <div class="col-sm-8">
-            <div class="jumbotron">
-                <h1>Welcome to our app!</h1>
-                <p>{{message}}</p>
+            <div class="jumbotron" *ngIf="activeUser">
+                <h2>{{activeUser.name}} <small>{{activeUser.username}}</small></h2>
+            </div>
+            <div class="jumbotron" *ngIf="!activeUser">
+                <span class="glyphicon glyphicon-hand-left"></span>
+                <h2>Choose a User</h2>
             </div>
         </div>
     </div>
@@ -34,16 +37,20 @@ import {Component} from "@angular/core";
     copyright &copy; 2017
 </footer>
     `, styles: [`
-        .jumbotron { box-shadow: 0 2px 0 rgba(0,0,0,0.2); }
+        .user-list li {cursor: pointer}
+        .jumbotron .glyphicon{font-size: 80px;}
     `]
 })
 
 export class AppComponent {
-    message = 'Hello!';
+    activeUser;
     users = [
         {id: 33, name: 'Ori', username: 'Volfo'},
         {id: 14, name: 'Morty', username: 'Mort'},
         {id: 55, name: 'Rick', username: 'Sanchez'}
-
         ];
+
+    selectedUser(user){
+        this.activeUser = user;
+    }
 }
