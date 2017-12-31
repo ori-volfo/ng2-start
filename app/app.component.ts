@@ -11,13 +11,23 @@ import {Component} from "@angular/core";
     </nav>
 </header>
 <main>
-    <div class="jumbotron">
-        <h1>Welcome to our app!</h1>
-        <p>{{message}}</p>
+    <div class="row">
+        <div class="col-sm-4">
+            <div *ngIf="users">
+                <ul class="list-group users-list" *ngFor="let user of users">
+                    <li class="list-group-item">The user is {{user.name}} {{user.username}}.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class="jumbotron">
+                <h1>Welcome to our app!</h1>
+                <p>{{message}}</p>
+            </div>
+        </div>
     </div>
-    <div *ngFor="let user of users">
-        <p>The user is {{user.name}} {{user.username}}.</p>
-    </div>
+    
+    
 </main>
 
 <footer class="text-center">
